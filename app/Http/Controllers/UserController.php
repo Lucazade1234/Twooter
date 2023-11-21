@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -37,7 +38,17 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $Allposts = Post::get();
+        $AllUsers = User::get();
+        $user = $AllUsers[$id];
+        $posts = [];
+        
+        foreach($Allposts as $post){
+            if($post->user_id == $id){
+                $posts[] = $post;
+            }
+        }
+        return view('users.user', ['posts' => $posts], ['user' => $user]);
     }
 
     /**

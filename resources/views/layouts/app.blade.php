@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="{{ asset('app.css') }}">
         <title>Twooter - @yield('title')</title>    
     </head>
 

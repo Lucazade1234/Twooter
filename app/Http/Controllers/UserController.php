@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Post;
 
@@ -14,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+       // $users = DB::table('users')->orderBy('id')->cursorPaginate(15);
         return view('users.index', ['users' => $users]);
     }
 
@@ -22,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**

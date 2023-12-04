@@ -4,6 +4,7 @@
 
 @section('content')
 
+<livewire:counter></livewire:counter>
 <p>Users of Twooter:</p>
     <ul>
         @foreach ($users as $user)

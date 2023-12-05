@@ -24,3 +24,5 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
 Route::get('/feed', [PostController::class, 'index']);
+
+Route::get('/addPost', [PostController::class, 'create']);

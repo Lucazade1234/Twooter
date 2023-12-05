@@ -25,5 +25,9 @@
 
     </div>
 
+    <div class="side-pane">
+        <button><a href="/addPost">Add Post</a></button>
+    </div>
+
     
 @endsection

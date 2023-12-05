@@ -5,16 +5,21 @@
 @section('content')
 
 <p>Twoots</p>
-    <ul>
-        @foreach ($posts as $post)
-            <h1>{{ $post->Title }}</h1>
-                <li href> <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
-                    <p>Description: {{ $post->Description }}</p>
-                    <p>Date Posted: {{ $post->date_of_post }}</p>
-                </li>
-        @endforeach
+    <div class="centered-div">
+        <ul>
+            @foreach ($posts as $post)
+                <h1>{{ $post->Title }}</h1>
+                    <li href> <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
+                        <p>Description: {{ $post->Description }}</p>
+                        <p>Date Posted: {{ $post->date_of_post }}</p>
+                    </li>
+            @endforeach
 
-        {{ $posts->links('pagination::bootstrap-4') }}
+            {{ $posts->links('pagination::bootstrap-4') }}
         
-    </ul>
+        </ul>
+
+    </div>
+
+    
 @endsection

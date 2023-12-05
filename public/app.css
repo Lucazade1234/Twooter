@@ -1,8 +1,4 @@
 
-/* Your custom CSS styles */
-
-
-
 .pagination {
     display: flex;
     justify-content: center;
@@ -21,7 +17,7 @@
 
 .centered-div {
     position: absolute;
-    top: 75%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

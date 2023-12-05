@@ -12,6 +12,10 @@
                     <li href> <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
                         <p>Description: {{ $post->Description }}</p>
                         <p>Date Posted: {{ $post->date_of_post }}</p>
+                        <button>Comment</button>
+                        <button>Upvote</button>
+                        <button>Downvote</button>
+
                     </li>
             @endforeach
 

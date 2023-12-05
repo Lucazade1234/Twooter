@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $Allposts = Post::get();
         $AllUsers = User::get();
-        $user = $AllUsers[$id];
+        $user = $AllUsers[$id - 1];
         $posts = [];
         
         foreach($Allposts as $post){

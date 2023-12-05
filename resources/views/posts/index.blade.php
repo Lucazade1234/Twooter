@@ -7,8 +7,8 @@
 <p>Twoots</p>
     <ul>
         @foreach ($posts as $post)
-            <h1> Name: {{ $post->User->name }}</h1>
-                <li> Title: {{ $post->Title }}
+            <h1>{{ $post->Title }}</h1>
+                <li href> <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
                     <p>Description: {{ $post->Description }}</p>
                     <p>Date Posted: {{ $post->date_of_post }}</p>
                 </li>

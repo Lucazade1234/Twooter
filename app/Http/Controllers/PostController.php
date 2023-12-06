@@ -29,7 +29,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:1000',
+            'user_id' => 'required|integer',
+       ]);
+
+       $p = new Post;
+       $p->title = $validatedData['title'];
+       $p->description = $validatedData['description'];
+       $p->user_id = $validatedData['user_id'];
+       $p->date_of_post = now();
+       $p->save();
+
+       session()->flash('message', 'Post Created');
+       return redirect()->route('posts.index');
+
     }
 
     /**

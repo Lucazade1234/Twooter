@@ -23,6 +23,8 @@ Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/users/{id}', [UserController::class, 'show']);
 
-Route::get('/feed', [PostController::class, 'index']);
+Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/addPost', [PostController::class, 'create']);
+
+Route::post('/addPost/store', [PostController::class, 'store'])->name('posts.store');

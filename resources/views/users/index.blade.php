@@ -13,8 +13,6 @@
             <li> <a href="/users/{{ $user->id }}">{{ $user->name }}</a></li>
         @endforeach
 
-        @php
-            dd($users);
-        @endphp
+        
     </ul>
 @endsection

@@ -21,15 +21,28 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'description' => 'required|max:1000',
+       ]);
+
+       $c = new Comment;
+       $c->Description = $validatedData['description'];
+       $c->post_id = $id;
+       $c->user_id = 1;
+       $c->date_of_post = now();
+       $c->save();
+
+       session()->flash('message', 'Comment added.');
+       return redirect()->route('comments.show', ['id' => $id]);
+      
     }
 
     /**

@@ -13,15 +13,20 @@
 
     <div>
         @foreach($comments as $comment)
+            <p>-------------------------------</p>
             <p>{{ $comment->Description }}<p>
         @endforeach
-
-        <form method="POST" action="{{ route('posts.store') }}">
-            @csrf
-            <p>Title: <input type="text" name="title" value="{{ old('title') }}"></p>
-            <textarea class="textarea" type="text" name="description" value="{{ old('description') }}"> </textarea>
-            <p>User ID: <input type="text" name="user_id" value="{{ old('title') }}"></p>
-            <input type="submit" value="Submit">
-        </form>
     </div>
-    @endsection
+
+
+
+    <form method="POST" action="{{ route('comments.store', ['id' => $post->value('id')]) }}">
+        @csrf
+        <textarea class="commmenttextarea" type="text" name="description" value="{{ old('description') }}"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+
+    <form method="GET" action="{{ route('posts.index')}}">
+        <button>back</button>
+    </form>
+    @endsection 

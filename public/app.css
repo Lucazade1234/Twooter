@@ -35,3 +35,11 @@
     padding: 10px;
     text-align: initial;
 }
+
+.commmenttextarea {
+    width: 25%;
+    height: 50px; 
+    resize: vertical; 
+    padding: 10px;
+    text-align: initial;
+}

@@ -41,6 +41,8 @@ Route::get('/addPost', [PostController::class, 'create']);
 
 Route::post('/addPost/store', [PostController::class, 'store'])->name('posts.store');
 
-Route::get('/comments/{id}', [CommentController::class, 'show']);
+Route::get('/comments/{id}', [CommentController::class, 'show'])->name('comments.show');
+
+Route::post('comments/{id}/addComment', [CommentController::class, 'store'])->name('comments.store');
 
 require __DIR__.'/auth.php';

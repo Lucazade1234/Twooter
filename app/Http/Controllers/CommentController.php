@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -10,9 +11,9 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        //
+        
     }
 
     /**
@@ -34,9 +35,11 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comment $comment)
+    public function show(string $id)
     {
-        //
+        $comments = Comment::where('post_id', $id)->get();
+        $post = Post::where('id', $id)->get();
+        return view('comments.index', ['comments' => $comments], ['post' => $post]);
     }
 
     /**

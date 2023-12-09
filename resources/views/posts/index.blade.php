@@ -15,7 +15,7 @@
                         <button> <a href="/comments/{{ $post->id }}">Comment</a></button>
                         <button>Upvote</button>
                         <button>Downvote</button>
-
+                        <button> <a href="/feed/editPost/{{ $post->id }}">Edit Post</a></button>
                     </li>
             @endforeach
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -21,7 +22,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        if(Auth::check()){
+            return view('posts.create');
+        } else{
+            return redirect()->route('posts.index');
+        }
+        
     }
 
     /**
@@ -32,13 +38,12 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:1000',
-            'user_id' => 'required|integer',
        ]);
 
        $p = new Post;
        $p->title = $validatedData['title'];
        $p->description = $validatedData['description'];
-       $p->user_id = $validatedData['user_id'];
+       $p->user_id = auth()->id();
        $p->date_of_post = now();
        $p->save();
 
@@ -58,17 +63,40 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
+        // Find the post
+        $post = Post::find($id);
+
+        // Check if the post exists
+        if (!$post) {
+            abort(404); // or handle it accordingly
+        }
+
+        // Update the post attributes
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+
+        // Save the changes
+        $post->save();
+
+        // Redirect to the post's details page or elsewhere
+        return redirect()->route('posts.index');
     }
 
     /**

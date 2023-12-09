@@ -37,6 +37,10 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 
 Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
 
+Route::get('/feed/editPost/{id}', [PostController::class, 'edit']);
+
+Route::put('feed/update/{id}', [PostController::class, 'update'])->name('posts.update');
+
 Route::get('/addPost', [PostController::class, 'create']);
 
 Route::post('/addPost/store', [PostController::class, 'store'])->name('posts.store');

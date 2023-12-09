@@ -64,9 +64,19 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {
+    {   
+
         $post = Post::find($id);
-        return view('posts.edit', ['post' => $post]);
+        try{
+
+            $this->authorize('update', $post);
+            return view('posts.edit', ['post' => $post]);
+
+        }catch(AuthorizationException $e){
+            session()->flash('message', 'User not authorized to edit this post');
+            return back();
+        }
+        
     }
 
     /**
@@ -74,6 +84,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+              
         // Validate the request
         $request->validate([
             'title' => 'required|string',

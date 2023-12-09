@@ -9,14 +9,15 @@
         <ul>
             @foreach ($posts as $post)
                 <h1>{{ $post->Title }}</h1>
-                    <li href> <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
+                    <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
                         <p>Description: {{ $post->Description }}</p>
                         <p>Date Posted: {{ $post->date_of_post }}</p>
                         <button> <a href="/comments/{{ $post->id }}">Comment</a></button>
                         <button>Upvote</button>
                         <button>Downvote</button>
                         <button> <a href="/feed/editPost/{{ $post->id }}">Edit Post</a></button>
-                    </li>
+                        <p>______________________________________________</p>
+                    
             @endforeach
 
             {{ $posts->links('pagination::bootstrap-4') }}

@@ -22,6 +22,14 @@
     transform: translate(-50%, -50%);
 }
 
+.centered-div-user-info {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+    
+
 .side-pane {
     width: 300px;
     padding: 20px;

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -36,7 +38,7 @@ class CommentController extends Controller
        $c = new Comment;
        $c->Description = $validatedData['description'];
        $c->post_id = $id;
-       $c->user_id = 1;
+       $c->user_id = Auth::id();
        $c->date_of_post = now();
        $c->save();
 
@@ -54,6 +56,14 @@ class CommentController extends Controller
         $post = Post::where('id', $id)->get();
         return view('comments.index', ['comments' => $comments], ['post' => $post]);
     }
+
+    public function showUsersComments(string $id)
+    {
+        $comments = Comment::where('user_id', $id)->get();
+        $user = User::find($id);
+        return view('comments.user-comments', ['comments' => $comments], ['user' => $user]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

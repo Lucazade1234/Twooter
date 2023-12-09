@@ -4,13 +4,24 @@
 
 @section('content')
 
-<p>This {{$user->name}}'s Twoots:</p>
-    <ul>
-        @foreach ($posts as $post)
+<div>
+    <button><a href="/users/{{ $user->id }}">See Posts</a></button>
+    <button><a href="/users/{{ $user->id }}/comments">See Comments</a></button>
+</div>
 
-            <li>{{ $post->Title }}
+
+<div class="">
+    <h1>{{$user->name}}'s Twoots:</h1>
+        <ul>
+            @foreach ($posts as $post)
+
+                <h1> {{ $post->Title }}</h1>
                 <p>{{ $post->Description }}</p>
-            </li>
-        @endforeach
-    </ul>
+                <p>______________________________________________</p>
+              
+            @endforeach
+        </ul>
+</div>
+
+<button><a href="/feed">Back</a></button>
 @endsection

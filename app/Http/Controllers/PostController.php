@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Providers\AppServiceProvider;
 
 class PostController extends Controller
 {
@@ -84,31 +85,31 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-              
-        // Validate the request
-        $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-        ]);
-
         // Find the post
         $post = Post::find($id);
 
-        // Check if the post exists
-        if (!$post) {
-            abort(404); // or handle it accordingly
-        }
+            $request->validate([
+                'title' => 'required|string',
+                'description' => 'required|string',
+            ]);
 
-        // Update the post attributes
-        $post->title = $request->input('title');
-        $post->description = $request->input('description');
+            // Check if the post exists
+            if (!$post) {
+                abort(404); // or handle it accordingly
+            }
 
-        // Save the changes
-        $post->save();
+            // Update the post attributes
+            $post->title = $request->input('title');
+            $post->description = $request->input('description');
 
-        // Redirect to the post's details page or elsewhere
-        return redirect()->route('posts.index');
+            // Save the changes
+            $post->save();
+
+            session()->flash('message', 'Post edited succesfully');
+            return redirect()->route('posts.index');
     }
+
+        
 
     /**
      * Remove the specified resource from storage.
@@ -117,4 +118,6 @@ class PostController extends Controller
     {
         //
     }
+
+    
 }

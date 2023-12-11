@@ -4,8 +4,13 @@
 
 @section('content')
 
-<p>Twoots</p>
-    <div class="centered-div">
+
+<div class="side-pane">
+        <button><a href="/addPost">Add Post</a></button>
+</div>
+
+<p>______________________________________________</p>
+    <div class="">
         <ul>
             @foreach ($posts as $post)
                 <h1>{{ $post->Title }}</h1>
@@ -25,10 +30,5 @@
         </ul>
 
     </div>
-
-    <div class="side-pane">
-        <button><a href="/addPost">Add Post</a></button>
-    </div>
-
     
 @endsection

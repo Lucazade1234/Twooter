@@ -31,9 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/users/{id}', [UserController::class, 'show']);
+
+Route::delete('feed/{id}', [PostController::class, 'delete']);
 
 Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
 

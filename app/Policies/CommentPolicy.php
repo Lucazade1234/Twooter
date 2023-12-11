@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use App\Providers\AppServiceProvider;
 
 class CommentPolicy
 {
@@ -37,7 +38,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): bool
     {
-        //
+        return $user->id === $comment->user_id || $user->role === 'admin';        
     }
 
     /**
@@ -45,7 +46,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
-        //
+        return $user->id === $comment->user_id || $user->role === 'admin';
     }
 
     /**

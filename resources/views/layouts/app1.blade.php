@@ -5,8 +5,12 @@
     </head>
 
     <body>
+    
         <h1>Twooter - @yield('title')</h1>
-
+        <nav class="centered-div">
+            <button>feed</button>
+            <button>add post</button>
+        </nav>
         @if($errors->any())
             <div>
                 Errors:

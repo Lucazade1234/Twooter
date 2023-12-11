@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,8 +24,13 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $e) {
+            if ($e instanceof AuthorizationException){
+                session()->flash('message', 'You are not allowed to delete this post');
+                session()->redirect()->route('posts.index');
+
+            }
         });
     }
+
 }

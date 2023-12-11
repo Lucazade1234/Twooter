@@ -6,6 +6,8 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Providers\AppServiceProvider;
+use Illuminate\Auth\Access\AuthorizationException;
+
 
 class PostController extends Controller
 {
@@ -116,9 +118,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::destroy($id);
-        return redirect()->route('posts.index');
+        $post = Post::find($id);
+    
+        try {
+            $this->authorize('delete', $post);
+            Post::destroy($id);
+            session()->flash('message', 'Post deleted successfully');
+            return redirect()->route('posts.index');
+        } catch (AuthorizationException $e) {
+            session()->flash('message', 'You are not allowed to delete this post');
+            return redirect()->back();
+        }
     }
-
     
 }

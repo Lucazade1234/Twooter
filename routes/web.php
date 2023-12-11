@@ -36,7 +36,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/users/{id}', [UserController::class, 'show']);
 
-Route::delete('feed/{id}', [PostController::class, 'delete']);
+Route::delete('feed/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
 

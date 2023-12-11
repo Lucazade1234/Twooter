@@ -18,9 +18,13 @@
                         <p>Description: {{ $post->Description }}</p>
                         <p>Date Posted: {{ $post->date_of_post }}</p>
                         <button> <a href="/comments/{{ $post->id }}">Comment</a></button>
-                        <button>Upvote</button>
-                        <button>Downvote</button>
                         <button> <a href="/feed/editPost/{{ $post->id }}">Edit Post</a></button>
+                        <p> </p>
+                        <form method="POST" action= "{{ route('posts.destroy', ['id' => $post->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete Post">
+                        </form>
                         <p>______________________________________________</p>
                     
             @endforeach

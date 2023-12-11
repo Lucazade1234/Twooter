@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
+use App\Mail\CommentMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -42,7 +45,10 @@ class CommentController extends Controller
        $c->date_of_post = now();
        $c->save();
 
+       $post = Post::find($id);
+
        session()->flash('message', 'Comment added.');
+       Mail::to($post->user->email)->send(new CommentMail($post));
        return redirect()->route('comments.show', ['id' => $id]);
       
     }

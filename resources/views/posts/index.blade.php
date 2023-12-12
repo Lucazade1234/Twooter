@@ -17,6 +17,12 @@
                     <a href="/users/{{ $post->User->id }}">{{ $post->User->name }}</a>
                         <p>Description: {{ $post->Description }}</p>
                         <p>Date Posted: {{ $post->date_of_post }}</p>
+
+                        @if ($post->image_path)
+                             <img src="{{ asset('storage/app/' . $post->image_path) }}" alt="Post Image">
+                        @endif
+
+
                         <button> <a href="/comments/{{ $post->id }}">Comment</a></button>
                         <button> <a href="/feed/editPost/{{ $post->id }}">Edit Post</a></button>
                         <p> </p>

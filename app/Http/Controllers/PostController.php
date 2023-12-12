@@ -41,6 +41,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:1000',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
        ]);
 
        $p = new Post;
@@ -48,6 +49,12 @@ class PostController extends Controller
        $p->description = $validatedData['description'];
        $p->user_id = auth()->id();
        $p->date_of_post = now();
+
+       if($request->hasFile('image')){
+        $imagePath = $request->file('image')->store('public/uploads');
+        $p->image_path = $imagePath;
+       }
+
        $p->save();
 
        session()->flash('message', 'Post Created');

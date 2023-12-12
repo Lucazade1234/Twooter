@@ -40,6 +40,8 @@ Route::delete('feed/{id}', [PostController::class, 'destroy'])->name('posts.dest
 
 Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
 
+Route::get('storage/app/{file_path}', [PostController::class, 'getImage'])->name('image.get');
+
 Route::get('/feed/editPost/{id}', [PostController::class, 'edit']);
 
 Route::put('feed/update/{id}', [PostController::class, 'update'])->name('posts.update');

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Providers\AppServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Storage; 
+
 
 
 class PostController extends Controller
@@ -50,9 +52,11 @@ class PostController extends Controller
        $p->user_id = auth()->id();
        $p->date_of_post = now();
 
+       $newImageName = time(). '.' . $validatedData['image']->extension();
+
        if($request->hasFile('image')){
-        $imagePath = $request->file('image')->store('public/uploads');
-        $p->image_path = $imagePath;
+        $request->file('image')->move(public_path('images'), $newImageName);
+        $p->image_path = $newImageName;
        }
 
        $p->save();
@@ -137,5 +141,21 @@ class PostController extends Controller
             return redirect()->back();
         }
     }
-    
+
+    public function showImage($imagePath){
+        
+        $path = 'app/' . $imagePath;
+
+        if(Storage::exists($path)){
+            
+            $file = Storage::get($path);
+            $type = Storage::mimeType($path);
+
+            $response = response($file, 200)->header('Content-Type', $type);
+
+            return $response;
+         }   
+
+        abort(404);
+    }
 }

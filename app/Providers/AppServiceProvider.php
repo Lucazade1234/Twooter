@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\ExternalApiService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Your registration code here
+        $this->app->singleton(ExternalApiService::class, function ($app) {
+            return new ExternalApiService();
+        });
     }
 
     /**

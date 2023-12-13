@@ -15,59 +15,98 @@
     border-color: #007bff;
 }
 
-.centered-div {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-.centered-div-user-info {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+body {
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Dark text color */
+    font-family: 'Arial', sans-serif; /* Change font family as needed */
 }
-    
 
 .side-pane {
-    width: 300px;
-    padding: 20px;
-    margin-left: -20px;
-}
-
-.textarea {
-    width: 100%;
-    height: 200px; 
-    resize: vertical; 
+    background-color: #3498db; /* Blue background color for side-pane */
+    color: #ffffff; /* Light text color */
     padding: 10px;
-    text-align: initial;
-}
-
-.commmenttextarea {
-    width: 25%;
-    height: 50px; 
-    resize: vertical; 
-    padding: 10px;
-    text-align: initial;
+    margin-right: 50%;
+    border-radius: 5px; /* Rounded corners */
 }
 
 .post-container {
-    position: relative;
+    background-color: #ffffff; /* White background color for post-container */
+    color: #333; /* Dark text color */
+    padding: 20px;
+    margin: 20px auto; /* Center the post on the page */
+    width: 80%; /* Adjust the width as needed */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 10px; /* Rounded corners */
 }
 
-.image-container {
-    position: absolute;
-    top: 50%;
-    right: 30%;
-    transform: translateY(-50%);
+.post-container h1 {
+    color: #e74c3c; /* Red color for the title */
+}
+
+.post-container p {
+    margin-bottom: 15px;
 }
 
 .post-image {
-    max-width: 400px;  
-    max-height: 200px; 
-    width: auto;
+    max-width: 100%; /* Make sure the image doesn't exceed its container */
     height: auto;
-    object-fit: cover;
-    border: 2px solid #333;  /* Set the border width and color */
+    display: block; /* Center the image within its container */
+    margin: 0 auto; /* Center the image horizontally */
+    border: 4px solid #3498db; /* Border color matching the side-pane */
+    border-radius: 8px; /* Rounded corners */
+}
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+    background-color: #2980b9;
+}
+
+.centre-div {
+    margin: 0 auto; /* Set left and right margins to auto */
+    width: 50%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Adjust the background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #007bff; /* Adjust the link color */
+    font-size: 16px;
+    margin-right: 20px; /* Adjust the spacing between links */
+}
+
+.joke-container {
+    flex-grow: 1; /* Allow the joke container to take up remaining space */
+    text-align: center;
+}
+
+/* Style the button if you want it to look like a button */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

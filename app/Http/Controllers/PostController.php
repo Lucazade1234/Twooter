@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Providers\AppServiceProvider;
+use App\Http\Controllers\DadJokesController;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Storage; 
 
@@ -19,7 +20,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('date_of_post')->paginate(10);
-        return view('posts.index', ['posts' => $posts]);
+
+        $joke = app(DadJokesController::class)->getJoke();
+
+       
+
+        return view('posts.index', ['posts' => $posts], ['joke' => $joke]);
     }
 
     /**
@@ -52,9 +58,9 @@ class PostController extends Controller
        $p->user_id = auth()->id();
        $p->date_of_post = now();
 
-       $newImageName = time(). '.' . $validatedData['image']->extension();
 
        if($request->hasFile('image')){
+        $newImageName = time(). '.' . $validatedData['image']->extension();
         $request->file('image')->move(public_path('images'), $newImageName);
         $p->image_path = $newImageName;
        }

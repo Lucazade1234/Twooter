@@ -4,7 +4,7 @@ use App\Http\Controllers\DadJokesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CommentController; 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,32 +31,32 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/feed', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/users', [UserController::class, 'index']);
+
+    Route::get('/users/{id}', [UserController::class, 'show']);
+
+    Route::delete('feed/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    Route::get('storage/app/{file_path}', [PostController::class, 'getImage'])->name('image.get');
+
+    Route::get('/feed/editPost/{id}', [PostController::class, 'edit']);
+
+    Route::put('feed/update/{id}', [PostController::class, 'update'])->name('posts.update');
+
+    Route::get('/addPost', [PostController::class, 'create']);
+
+    Route::post('/addPost/store', [PostController::class, 'store'])->name('posts.store');
+
+    Route::get('/comments/{id}', [CommentController::class, 'show'])->name('comments.show');
+
+    Route::get('/users/{id}/comments', [CommentController::class, 'showUsersComments']);
+
+    Route::post('comments/{id}/addComment', [CommentController::class, 'store'])->name('comments.store');
+
+    Route::get('/joke', [DadJokesController::class, 'getJoke'])->name('joke');
+
 
 });
 
 
-Route::get('/users', [UserController::class, 'index']);
-
-Route::get('/users/{id}', [UserController::class, 'show']);
-
-Route::delete('feed/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-Route::get('storage/app/{file_path}', [PostController::class, 'getImage'])->name('image.get');
-
-Route::get('/feed/editPost/{id}', [PostController::class, 'edit']);
-
-Route::put('feed/update/{id}', [PostController::class, 'update'])->name('posts.update');
-
-Route::get('/addPost', [PostController::class, 'create']);
-
-Route::post('/addPost/store', [PostController::class, 'store'])->name('posts.store');
-
-Route::get('/comments/{id}', [CommentController::class, 'show'])->name('comments.show');
-
-Route::get('/users/{id}/comments', [CommentController::class, 'showUsersComments']);
-
-Route::post('comments/{id}/addComment', [CommentController::class, 'store'])->name('comments.store');
-
-Route::get('/joke', [DadJokesController::class,'getJoke'])->name('joke');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

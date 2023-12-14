@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -106,10 +107,10 @@
     <title>Twooter @yield('title')</title>
 </head>
 
-<body>
+<body class="font-sans">
 
-    <header>
-        <h1><a href="/feed">Twooter @yield('title')</a></h1>
+    <header class="bg-blue-500 text-white text-center py-8">
+        <h1 class="text-2xl font-bold"><a href="/feed">Twooter @yield('title')</a></h1>
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -124,10 +125,8 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                        onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
@@ -152,7 +151,7 @@
     </div>
     @endif
 
-    <main>
+    <main class="max-w-2xl mx-auto my-8 px-4 py-6 bg-white shadow-md rounded-md transition duration-300 hover:shadow-lg">
         @yield('content')
     </main>
 

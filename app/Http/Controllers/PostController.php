@@ -20,11 +20,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('date_of_post')->paginate(10);
-
         $joke = app(DadJokesController::class)->getJoke();
-
-       
-
+        
         return view('posts.index', ['posts' => $posts], ['joke' => $joke]);
     }
 

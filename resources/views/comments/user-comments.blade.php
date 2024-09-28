@@ -11,6 +11,7 @@
 
 <h1>{{$user->name}}'s Comments:</h1>
 
+
 <div class="post-container">
 
     <ul>

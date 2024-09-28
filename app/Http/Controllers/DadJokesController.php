@@ -10,9 +10,9 @@ class DadJokesController extends Controller
 {
     protected $externalApiService;
 
-    public function __construct(ExternalApiService $externalApiService)
+    public function __construct()
     {
-        $this->externalApiService = $externalApiService;
+        $this->externalApiService = app(ExternalApiService::class);
     }
 
     public function getJoke()

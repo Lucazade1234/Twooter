@@ -4,7 +4,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 
-class ExternalApiService
+class externalApiService
 {
     public function fetchData()
     {
@@ -12,7 +12,7 @@ class ExternalApiService
 
         $apiKey = Config::get('services.external_api.key');
 
-        $response = $client->request('GET', 'https://api.api-ninjas.com/v1/dadjokes?limit=1', [
+        $response = $client->request('GET', 'https://api.api-ninjas.com/v1/dadjokes', [
             'headers' => [
                 'X-API-Key' => $apiKey,
             ],
